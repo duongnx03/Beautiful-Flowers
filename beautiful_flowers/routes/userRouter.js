@@ -1,17 +1,19 @@
 const express = require('express');
+const router = express.Router();
+const { registerUser, loginUser, getAllUsers } = require('../controller/userController');
 
-const { getFormRegister, registerUser, getFormLogin,checkLogin } = require('../controllers/userControllers');
+router.get('/register', (req, res) => {
+    res.render('register', { data: null, error: null });
+});
 
+router.post('/register', registerUser);
 
-const userRouter = express.Router();
+router.get('/login', (req, res) => {
+    res.render('login', { data: null, error: null });
+});
 
-userRouter.post('/register', registerUser);
+router.post('/login', loginUser);
 
-userRouter.get('/register', getFormRegister);
+router.get('/list', getAllUsers);
 
-userRouter.get('/login', getFormLogin);
-
-userRouter.post('/login', checkLogin);
-
-
-module.exports = userRouter;
+module.exports = router;
