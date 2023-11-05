@@ -4,8 +4,20 @@
     <title>Đăng ký</title>
 </head>
 <body>
-    
     <h1>Đăng ký tài khoản</h1>
+    <!-- Thêm mã JavaScript để xử lý chuyển hướng
+    <script>
+        // Kiểm tra nếu có thông báo đăng ký thành công từ server
+        <% if (data) { %>
+            // Hiển thị thông báo
+            document.write('<p>Đăng ký thành công! Chuyển hướng đến trang đăng nhập...</p>');
+            // Chuyển hướng sau 3 giây
+            setTimeout(function() {
+                window.location.href = '/user/login';
+            }, 3000); // Thời gian chuyển hướng (3 giây)
+        <% } %>
+    </script> -->
+
     <form method="POST" action="/user/register">
         <label for="name">Tên:</label>
         <input type="text" name="name" id="name" required><br><br>
@@ -17,8 +29,8 @@
         <input type="number" name="age" id="age" required><br><br>
         <label for="role">Vai trò:</label>
         <input type="text" name="role" id="role" required><br><br>
-
         <button type="submit">Đăng ký</button>
     </form>
 </body>
 </html>
+register.ejs

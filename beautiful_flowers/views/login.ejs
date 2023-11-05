@@ -1,10 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Đăng nhập</title>
 </head>
 <body>
+    <!-- <script>
+        // Kiểm tra nếu có thông báo đăng ký thành công từ server
+        // <% if (data) { %>
+            // Hiển thị thông báo
+            document.write('<p>Đăng nhập thành công! Chuyển hướng đến trang List ...</p>');
+            // Chuyển hướng sau 3 giây
+            setTimeout(function() {
+                window.location.href = '/user/list';
+            }, 3000); // Thời gian chuyển hướng (3 giây)
+        // <% } %>
+    </script> -->
+
     <h1>Đăng nhập</h1>
     <form method="POST" action="/user/login">
         <label for="email">Email:</label>
@@ -13,5 +24,6 @@
         <input type="password" name="password" id="password" required><br><br>
         <button type="submit">Đăng nhập</button>
     </form>
+    
 </body>
 </html>

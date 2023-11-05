@@ -11,21 +11,23 @@ const registerUser = async (req, res) => {
             const user = new User({ name, email, password, age, role });
             await user.save();
             req.session.user = user;
-            return res.redirect('/user/login');
+            res.redirect('/user/login');
         }
     } catch (err) {
         console.error(err);
         res.render('register', { error: 'Đăng ký thất bại', data: req.body });
     }
 };
-
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
-    const user = await User.findOne({ email, password });
-    if (user) {
+    const user = await User.findOne({ email });
+
+    if (user && user.comparePassword(password)) {
+        // Mật khẩu khớp và người dùng tồn tại trong cơ sở dữ liệu, chuyển hướng đến trang danh sách
         req.session.user = user;
         res.redirect('/user/list');
     } else {
+        // Mật khẩu không khớp hoặc người dùng không tồn tại, hiển thị thông báo lỗi
         res.render('login', { error: 'Đăng nhập thất bại', data: req.body });
     }
 }

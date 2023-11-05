@@ -1,0 +1,15 @@
+<!-- list.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách người đăng ký</title>
+</head>
+<body>
+    <h1>Danh sách người đăng ký</h1>
+    <ul>
+        <% users.forEach(user => { %>
+            <li><%= user.name %> - <%= user.email %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

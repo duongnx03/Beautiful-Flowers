@@ -7,11 +7,9 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', registerUser);
-
 router.get('/login', (req, res) => {
     res.render('login', { data: null, error: null });
 });
-
 router.post('/login', loginUser);
 
 router.get('/list', getAllUsers);
