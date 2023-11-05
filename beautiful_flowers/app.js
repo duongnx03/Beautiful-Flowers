@@ -1,3 +1,10 @@
+const {default: mongoose} = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/beautiful-flowers')
+    .then(()=> console.log("Connect success"))
+    .catch(error => {
+        console.log("Error:", error);
+      });
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
