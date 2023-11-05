@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getAllUsers } = require('../controller/userController');
+const { registerUser, loginUser, getAllUsers } = require('../controllers/userController');
 
 router.get('/register', (req, res) => {
     res.render('register', { data: null, error: null });
