@@ -6,7 +6,9 @@ var logger = require('morgan');
 const {default: mongoose} = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userRouter');
+var adminRouter = require('./routes/adminRouter'); 
 const session = require('express-session');
+const expressLayout = require('express-ejs-layouts');
 var app = express();
 mongoose.connect('mongodb://127.0.0.1:27017/beautiful-flowers')
     .then(() => console.log("connect success"))
@@ -17,6 +19,7 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(expressLayout);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,6 +30,7 @@ app.use(session({
 }));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
