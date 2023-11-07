@@ -10,9 +10,15 @@ const productSchema = new Schema({
         min: [5, 'min is 5'],
         max: [500, 'max is 500']
     },
+    quantity: {
+        type: Number,
+        required: [true, 'Quantity is required'],
+        min: [1, 'min is 1'],
+        max: [100, 'max is 100']
+    },
     description:{
         type: String,
-        required: [true, 'Name is required']
+        required: [true, 'Description is required']
     },
     image: {
         type: String,

@@ -1,0 +1,38 @@
+
+    <div class="container mt-3">
+        <h1>Edit</h1>
+            <form action="/product/edit/<%=data? data.id :'' %>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<%=data? data.id :'' %>">
+                <input type="hidden" name="current_image" value="<%=data? data.image :'' %>">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" name="name" value="<%=data? data.name :'' %>">
+                    <span class="text-danger"><%=errors? errors.name:'' %></span>
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input type="text" class="form-control" name="price" value="<%=data? data.price :'' %>">
+                    <span class="text-danger"><%=errors? errors.price:'' %></span>
+                </div>
+                <div class="form-group">
+                    <label for="">Quantity</label>
+                    <input type="text" class="form-control" name="quantity" value="<%=data? data.quantity :'' %>">
+                    <span class="text-danger"><%=errors? errors.quantity:'' %></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <input type="text" class="form-control" name="description" value="<%=data? data.description :'' %>">
+                    <span class="text-danger"><%=errors? errors.description:'' %></span>
+                </div>
+                <div class="form-group">
+                    <label for="">Image</label>
+                    <input type="file" class="form-control" name="image">
+                    <span class="text-danger"><%=errors? errors.image:'' %></span>
+                    <div>Current Image: 
+                        <img src="<%=data? data.image :'' %>" width="100px">
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Edit">
+            </form>
+    </div>

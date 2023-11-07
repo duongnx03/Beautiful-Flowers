@@ -1,0 +1,37 @@
+
+    <div class="container">
+        <h1 class="text-success" >CREATE NEW PRODUCT</h1>
+        <% if(errors){ %>
+            <p class="text-danger">
+                <%= errors %>
+            </p>
+        <% } %>
+        <form action="/product/create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-control" value="<%= data ? data.name : '' %>" />
+                <span class="text-danger"><%= errors ? errors.name : '' %></span>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" name="price" class="form-control" value="<%= data ? data.price : '' %>" />
+                <span class="text-danger"><%= errors ? errors.price : '' %></span>
+            </div>
+            <div class="form-group">
+                <label for="price">Quantity</label>
+                <input type="text" name="quantity" class="form-control" value="<%= data ? data.quantity : '' %>" />
+                <span class="text-danger"><%= errors ? errors.quantity : '' %></span>
+            </div>
+            <div class="form-group">
+                <label for="price">Description</label>
+                <input type="text" name="description" class="form-control" value="<%= data ? data.description : '' %>" />
+                <span class="text-danger"><%= errors ? errors.description : '' %></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Image</label>
+                <input type="file" name="image" class="form-control" value="<%= data ? data.image : '' %>" />
+                <span class="text-danger"><%= errors ? errors.image : '' %></span>
+            </div>
+            <button type="submit" class="btn btn-info" type="text-align:center;">Create</button><br><br>
+        </form>
+    </div>

@@ -11,11 +11,13 @@ const getFormCreate = (req, res) => {
 }
 
 const createProduct = async (req, res) => {
-    const { name, price } = req.body; // Sử dụng cú pháp đúng để lấy dữ liệu từ req.body
+    const { name, price, quantity, description} = req.body; // Sử dụng cú pháp đúng để lấy dữ liệu từ req.body
     const imageUrl = req.file ? `/upload/${req.file.filename}` : '';
     const dataSubmit = {
         name: name,
         price: price,
+        quantity: quantity,
+        description: description,
         image: imageUrl
     };
     try {
@@ -47,7 +49,7 @@ const getFromEdit = async(req, res)=>{
 }
 
 const editProduct = async(req, res)=>{
-    let {id, name, price, current_image} = req.body;
+    let {id, name, price, description, current_image} = req.body;
     let imageUrl;
     if(req.file){
         imageUrl = `/upload/${req.file.filename}`;
@@ -58,6 +60,8 @@ const editProduct = async(req, res)=>{
         id : id,
         name: name,
         price: price,
+        quantity: quantity,
+        description: description,
         image: imageUrl
     }
     console.log(dataSubmit);
