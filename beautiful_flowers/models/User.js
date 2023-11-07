@@ -10,10 +10,23 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Email is required'],
         unique: true,
+        validate: {
+            validator: function (email) {
+                const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+                return emailRegex.test(email);
+            },
+            message: 'Invalid email format',
+        },
     },
     password: {
         type: String,
         required: [true, 'Password is required'],
+        validate: {
+            validator: function (password) {
+                return password.length >= 8;
+            },
+            message: 'Password must be at least 8 characters long',
+        },
     },
     age: {
         type: Number,
@@ -24,6 +37,13 @@ const userSchema = new Schema({
     role: {
         type: String,
         required: [true, 'Role is required'],
+        validate: {
+            validator: function (role) {
+                const validRoles = ['user', 'admin'];
+                return validRoles.includes(role);
+            },
+            message: 'Invalid role',
+        },
     },
 });
 
