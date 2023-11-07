@@ -3,13 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const {default: mongoose} = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userRouter');
 var adminRouter = require('./routes/adminRouter'); 
 const session = require('express-session');
 const expressLayout = require('express-ejs-layouts');
 var app = express();
+const {default: mongoose} = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/beautiful-flowers')
     .then(() => console.log("connect success"))
     .catch(error => console.log("error:", error))
@@ -31,6 +31,10 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/admin', adminRouter);
+
+app.get('/product', (req, res) => {
+  res.render('product', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
