@@ -1,7 +1,7 @@
 const express = require('express');
 const {getAllProduct, getFormCreate, createProduct,getFromEdit, editProduct, deleteProduct} = require('../controllers/productController');
 
-const upload = require('../../controllers/middleware/uploadFile');
+const upload = require('../controllers/middleware/uploadFile');
 
 const productRouter = express.Router();
 productRouter.get('/admin/', getAllProduct);
