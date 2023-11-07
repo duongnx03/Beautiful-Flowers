@@ -6,7 +6,7 @@ const registerUser = async (req, res) => {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             const errors = { email: 'Email đã tồn tại' };
-            return res.render('register', { errors, data: req.body });
+            return res.render('register', { errors, data: req.body });e
         } else {
             const user = new User({ name, email, password, age, role });
             await user.save();
