@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Index Page' });
 });
 
-router.get('/admin/', function(req, res, next) {
+router.get('/admin', function(req, res, next) {
   res.render('admin/index', { title: 'Admin Page', layout: 'admin/adminLayout' });
 });
 

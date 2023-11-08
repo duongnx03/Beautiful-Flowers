@@ -90,7 +90,7 @@ const deleteProduct = async(req, res)=>{
             if (result) { // Kiểm tra xem result có tồn tại
                 if (result.image !== '') {
                     try {
-                        fs.unlinkSync('./src/public/' + result.image); // xóa file vật lý
+                        fs.unlinkSync('./beautiful_flowers/public/' + result.image); // xóa file vật lý
                     } catch (err) {
                         console.log(err);
                     }
