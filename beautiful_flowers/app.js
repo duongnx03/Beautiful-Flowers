@@ -32,6 +32,21 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/admin', adminRouter);
 
+app.get('/product', (req, res) => {
+  res.render('product', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+});
+app.get('/product_detail', (req, res) => {
+  res.render('product_detail', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+});
+app.get('/blog', (req, res) => {
+  res.render('blog', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+});
+app.get('/contact', (req, res) => {
+  res.render('contact', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+});
+app.get('/cart', (req, res) => {
+  res.render('cart', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
