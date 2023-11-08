@@ -16,6 +16,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/beautiful-flowers')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'layout'); 
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,8 +33,8 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/admin', adminRouter);
 
-app.get('/product', (req, res) => {
-  res.render('product', { /* Truyền dữ liệu mà bạn muốn hiển thị trên trang này */ });
+app.get('/admin', (req, res) => {
+  res.render('admin/index', { layout: 'adminLayout' });
 });
 
 // catch 404 and forward to error handler

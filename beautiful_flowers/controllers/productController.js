@@ -49,7 +49,7 @@ const getFromEdit = async(req, res)=>{
 }
 
 const editProduct = async(req, res)=>{
-    let {id, name, price, description, current_image} = req.body;
+    let {id, name, price, description, quantity, current_image} = req.body;
     let imageUrl;
     if(req.file){
         imageUrl = `/upload/${req.file.filename}`;
@@ -78,7 +78,7 @@ const editProduct = async(req, res)=>{
             for (const field in err.errors) {
                 errors[field] = err.errors[field].message;
             }
-            res.render('create', { errors, data: dataSubmit });
+            res.render('edit', { errors, data: dataSubmit });
         }
     })
 }
@@ -86,20 +86,24 @@ const editProduct = async(req, res)=>{
 const deleteProduct = async(req, res)=>{
     const {id} = req.params;
     await Product.findByIdAndDelete(id)
-        .then(result =>{
-            if(result.image != ''){
-                try{
-                    fs.unlinkSync('./src/public/'+result.image); //xoa file vat ly
-                }catch(err){
-                    console.log(err);
+        .then(result => {
+            if (result) { // Kiểm tra xem result có tồn tại
+                if (result.image !== '') {
+                    try {
+                        fs.unlinkSync('./src/public/' + result.image); // xóa file vật lý
+                    } catch (err) {
+                        console.log(err);
+                    }
                 }
+                req.session.message = 'Product deleted successfully';
+            } else {
+                req.session.message = 'Product not found'; // Xử lý trường hợp không tìm thấy sản phẩm
             }
-            req.session.message = 'Product deleted successfully';
             res.redirect('/product');
         })
-        .catch(err =>{
-            console.log("err delete: ", err);
-    })
+        .catch(err => {
+            console.log('err delete: ', err);
+        });
 }
 
 module.exports = { getAllProduct, getFormCreate, createProduct, getFromEdit, editProduct, deleteProduct };

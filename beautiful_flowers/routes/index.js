@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/admin/', function(req, res, next) {
-  res.render('admin/index', { title: 'Admin Page' });
+  res.render('admin/index', { title: 'Admin Page', layout: 'admin/adminLayout' });
 });
 
 module.exports = router;
