@@ -1,71 +1,47 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
-
 const userSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'Name is required'],
+        required: true,
     },
     email: {
         type: String,
-        required: [true, 'Email is required'],
+        required: true,
         unique: true,
-        validate: {
-            validator: function (email) {
-                const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-                return emailRegex.test(email);
-            },
-            message: 'Invalid email format',
-        },
     },
     password: {
         type: String,
-        required: [true, 'Password is required'],
+        required: true,
         validate: {
             validator: function (password) {
+                // Password must be at least 8 characters long
                 return password.length >= 8;
             },
-            message: 'Password must be at least 8 characters long',
+            message: 'Password must be at least 8 characters long.',
         },
+        maxlength: [50, 'Password must not exceed 50 characters.'],
     },
     age: {
         type: Number,
-        required: [true, 'Age is required'],
-        min: [10, 'Min age is 10'],
-        max: [60, 'Max age is 60'],
-    },
-    role: {
-        type: String,
-        required: [true, 'Role is required'],
+        required: true,
         validate: {
-            validator: function (role) {
-                const validRoles = ['user', 'admin'];
-                return validRoles.includes(role);
+            validator: function (age) {
+                // Age must be 16 or greater
+                return age >= 16;
             },
-            message: 'Invalid role',
+            message: 'Age must be 16 or greater.',
         },
     },
+    phone: {
+        type: Number,
+        required: true
+    },
 });
 
-userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-
-    try {
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(this.password, saltRounds);
-        this.password = hashedPassword;
-        return next();
-    } catch (error) {
-        return next(error);
-    }
-});
+// Remove the password hashing middleware
 
 userSchema.methods.comparePassword = async function (password) {
-    try {
-        return await bcrypt.compare(password, this.password);
-    } catch (error) {
-        throw error;
-    }
+    return password === this.password; 
 };
 
 const User = model('User', userSchema);
