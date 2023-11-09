@@ -3,32 +3,86 @@
 <head>
     <title>Đăng ký</title>
 </head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    background-color: #fff;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Remove the up and down arrows from number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
 <body>
     <h1>Đăng ký tài khoản</h1>
-    <!-- Thêm mã JavaScript để xử lý chuyển hướng
-    <script>
-        // Kiểm tra nếu có thông báo đăng ký thành công từ server
-        <% if (data) { %>
-            // Hiển thị thông báo
-            document.write('<p>Đăng ký thành công! Chuyển hướng đến trang đăng nhập...</p>');
-            // Chuyển hướng sau 3 giây
-            setTimeout(function() {
-                window.location.href = '/user/login';
-            }, 3000); // Thời gian chuyển hướng (3 giây)
-        <% } %>
-    </script> -->
-
     <form method="POST" action="/user/register">
         <label for="name">Tên:</label>
-        <input type="text" name="name" id="name" required><br><br>
+        <input type="text" name="name" id="name"><br><br>
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br><br>
+        <input type="email" name="email" id="email"><br><br>
         <label for="password">Mật khẩu:</label>
-        <input type="password" name="password" id="password" required><br><br>
+        <input type="password" name="password" id="password"><br><br>
         <label for="age">Tuổi:</label>
-        <input type="number" name="age" id="age" required><br><br>
-        <label for="role">Vai trò:</label>
-        <input type="text" name="role" id="role" required><br><br>
+        <input type="number" name="age" id="age"><br><br>
+        <label for="phone">Điện thoại:</label>
+        <input type="number" name="phone" id="phone"><br><br>
         <button type="submit">Đăng ký</button>
     </form>
 </body>
